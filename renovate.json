@@ -1,0 +1,10 @@
+{
+	"extends": ["config:base"],
+	"labels": ["renovate"],
+	"schedule": ["after 9am and before 6pm on every weekday"],
+	"timezone": "Europe/Berlin",
+	"prHourlyLimit": 1,
+	"patch": {
+		"enabled": false
+	}
+}

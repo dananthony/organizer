@@ -1,0 +1,81 @@
+{
+	"name": "base-next",
+	"version": "1.0.0",
+	"scripts": {
+		"preinstall": "nvm-guard",
+		"build": "nvm-guard && next build",
+		"commit": "nvm-guard && commit",
+		"dev": "nvm-guard && next",
+		"format": "npm run format:css && npm run format:ts",
+		"format:css": "npm run lint:css -- --fix",
+		"format:ts": "npm run prettier -- --write",
+		"lint": "npm run lint:css && npm run lint:ts",
+		"lint:css": "nvm-guard && stylelint --allow-empty-input 'src/**/*.{css,js,jsx,ts,tsx}'",
+		"lint:ts": "nvm-guard && eslint --no-error-on-unmatched-pattern . src/**/*.{js,jsx,ts,tsx}",
+		"prettier": "nvm-guard && prettier package.json .*rc *.js 'src/**/*.{js,jsx,ts,tsx}'",
+		"start": "nvm-guard && next start",
+		"test": "nvm-guard && jest --passWithNoTests",
+		"test:coverage": "npm test -- --coverage",
+		"test:dev": "npm test -- --watch",
+		"type-check": "nvm-guard && tsc",
+		"validate": "npm run lint && npm test && npm run prettier -- --list-different",
+		"prepare": "husky install"
+	},
+	"engines": {
+		"node": "16.14.0"
+	},
+	"lint-staged": {
+		"'src/**/*.{js,jsx,ts,tsx}'": [
+			"npm run lint:ts -- --fix",
+			"npm run format:ts"
+		],
+		"src/**/*.styles.{css,js,jsx,ts,tsx}": [
+			"npm run format:css"
+		]
+	},
+	"browserslist": [
+		"extends @acolorbright/browserslist-config"
+	],
+	"dependencies": {
+		"@sentry/nextjs": "6.19.2",
+		"next": "12.1.0",
+		"react": "17.0.2",
+		"react-dom": "17.0.2"
+	},
+	"devDependencies": {
+		"@acolorbright/browserslist-config": "1.0.2",
+		"@acolorbright/eslint-config-ts-react": "2.3.1",
+		"@acolorbright/stylelint-config": "4.0.0",
+		"@axe-core/react": "4.4.0",
+		"@commitlint/cli": "16.2.1",
+		"@commitlint/config-conventional": "16.2.1",
+		"@commitlint/prompt-cli": "16.2.1",
+		"@stylelint/postcss-css-in-js": "0.37.2",
+		"@testing-library/jest-dom": "5.16.2",
+		"@testing-library/react": "12.1.2",
+		"@types/node": "16.11.22",
+		"@types/react": "17.0.38",
+		"@types/react-dom": "17.0.11",
+		"@typescript-eslint/eslint-plugin": "5.16.0",
+		"@typescript-eslint/parser": "5.16.0",
+		"babel-plugin-module-resolver": "4.1.0",
+		"eslint": "8.12.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-import-resolver-babel-module": "5.3.1",
+		"eslint-plugin-extra-rules": "0.8.1",
+		"eslint-plugin-import": "2.25.4",
+		"eslint-plugin-jsx-a11y": "6.5.1",
+		"eslint-plugin-prettier": "4.0.0",
+		"eslint-plugin-react": "7.29.2",
+		"eslint-plugin-react-hooks": "4.3.0",
+		"eslint-plugin-simple-import-sort": "7.0.0",
+		"husky": "7.0.4",
+		"jest": "27.5.0",
+		"lint-staged": "12.3.3",
+		"nvm-guard": "1.0.4",
+		"postcss-syntax": "0.36.2",
+		"prettier": "2.6.0",
+		"stylelint": "14.6.0",
+		"typescript": "4.6.2"
+	}
+}
